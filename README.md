@@ -73,6 +73,32 @@ To find the distance between two locations (let's call them `loc_a` and `loc_b`)
 	
 	loc_a.distanceTo(loc_b);
 	
+### Tracking the current location
+
+There are two ways of getting the current location. The first involves a one off call to get the current location from the browser, and the second involved continuously tracking the location. Both methods will trigger *update* events whenever the **Location** instance is updated.
+
+To get the current location once:
+
+	var loc = new Location(0,0); // new Location instance at 0,0
+	loc.setToCurrent();          // get the current location
+	
+To track the location continuously
+
+	var loc = new Location(0,0); // new Location instance at 0,0
+	loc.trackLocation({
+		continuous: true
+	});
+	
+Anything that interfaces with the browser's Geolocation API is asynchronous, and so the *update* event must be relied on in order to get the current location:
+
+	var loc = new Location(0,0);
+	loc.addEvent('update', function() {
+		var position = loc.position;
+		// do something …
+	});
+	
+	loc.setToCurrent();
+
 ### Serialisation of the **Location** object
 
 For data storage and transmission, **Location** provides two serialisation methods: `toString` and `toJSON`:
