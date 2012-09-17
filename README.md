@@ -65,6 +65,14 @@ Each time *latitude* or *longitude* is set, an *update* event is fired on the in
 
 This achieves the same as the above code (without the instantiation, of course) but in one line and with only one event being triggered.
 
+### Finding the distance between locations
+
+To find the distance between two locations (let's call them `loc_a` and `loc_b`) we have two options: either we can use the class level method `distanceBetweenLocations` or the instance level method `distanceTo`. For example, these two give the same result:
+
+	Location.distanceBetweenLocations(loc_a, loc_b);
+	
+	loc_a.distanceTo(loc_b);
+	
 ### Serialisation of the **Location** object
 
 For data storage and transmission, **Location** provides two serialisation methods: `toString` and `toJSON`:
